@@ -12,7 +12,7 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY not set in .env file")
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'kemetvision.com', 'www.kemetvision.com']
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',
     'app',
 ]
 
@@ -143,3 +144,5 @@ LOGGING = {
         'level': 'ERROR',
     },
 }
+
+
