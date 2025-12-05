@@ -2,8 +2,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
 from django.http import HttpResponse
+from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import set_language
+from django.contrib.sitemaps.views import sitemap
+from config.sitemaps import StaticViewSitemap
 
 def robots_txt(request):
     content = """User-agent: *
@@ -14,12 +17,23 @@ Sitemap: https://kemetvision.com/sitemap.xml
 """
     return HttpResponse(content, content_type='text/plain')
 
+# Sitemap configuration
+sitemaps = {
+    'static': StaticViewSitemap,
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("app.urls")),
-    path('sitemap.xml', TemplateView.as_view(template_name='sitemap.xml', content_type='application/xml')),
+    path('i18n/setlang/', set_language, name='set_language'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', robots_txt),
 ]
+
+# Language-aware URL patterns
+urlpatterns += i18n_patterns(
+    path("", include("app.urls")),
+    prefix_default_language=False,
+)
 
 # Serve media & static in development
 if settings.DEBUG:

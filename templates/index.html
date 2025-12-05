@@ -1,6 +1,7 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="{{ LANGUAGE_CODE|default:'ar' }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}" {% if LANGUAGE_CODE == 'en' %}class="ltr-layout"{% endif %}>
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
         {% if seo %}
         {{ seo.meta_title }}
         {% else %}
-        Kemét Consulting – خبراء الإستشارات
+        {% trans "Kemét Consulting – Expert Consultants" %}
         {% endif %}
     </title>
 
@@ -61,40 +62,49 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home">{% trans "Home" %}</a></li>
+            <li><a href="#about">{% trans "About" %}</a></li>
+            <li><a href="#services">{% trans "Services" %}</a></li>
+            <li><a href="#contact">{% trans "Contact" %}</a></li>
         </ul>
+        <div class="language-switcher">
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                <select name="language" onchange="this.form.submit()">
+                    <option value="ar" {% if LANGUAGE_CODE == 'ar' %}selected{% endif %}>العربية</option>
+                    <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                </select>
+            </form>
+        </div>
     </nav>
 
     <header id="home">
         <img src="{% static 'img/logo.jpg' %}" alt="kemet consulting logo">
         <section class="main-section"></section>
         <h1>KEMÉT CONSULTING</h1>
-        <p class="first_p">حيث تلتقي حضارة عمرها 7000 عام مع حضارة بنت المستقبل في نصف قرن</p>
-        <p class="second_p">نقدم حلولاً إستشارية وتنفيذية تُحدث أثراً حقيقياً للحكومات والشركات في جميع القطاعات</p>
-        <button class="booking_button">احجز موعداً خاصاً</button>
+        <p class="first_p">{% trans "Where a 7,000-year-old civilization meets a civilization that built the future in half a century" %}</p>
+        <p class="second_p">{% trans "We provide advisory and executive solutions that create real impact for governments and companies across all sectors" %}</p>
+        <button class="booking_button">{% trans "Book a Private Appointment" %}</button>
     </header>
 
     <!-- About Section -->
     <section class="about" id="about">
         <div class="about-container">
             <div class="about-header">
-                <h2>من نحن</h2>
+                <h2>{% trans "About Us" %}</h2>
                 <div class="about-divider"></div>
             </div>
 
-            <p class="about-intro">هوية تمتد عبر الزمن وتتحرك نحو المستقبل</p>
+            <p class="about-intro">{% trans "An identity that spans time and moves toward the future" %}</p>
 
             <div class="about-content">
                 <div class="about-card">
-                    <p>نحن <span class="highlight">Kemét Consulting</span> بيت خبرة يجمع بين حكمة الفراعنة التي صنعت أول
-                        نظم الإدارة والهندسة وبين حضارة الإمارات التي بنت مستقبلاً كاملاً في نصف قرن.</p>
+                    <p>{% blocktrans %}We are <span class="highlight">Kemét Consulting</span>, a house of expertise that combines the wisdom of the pharaohs who created the first systems of management and engineering with the civilization of the UAE that built a complete future in half a century.{% endblocktrans %}</p>
                 </div>
 
                 <div class="about-card">
-                    <p>نقدم إستشارات إستراتيجية وتنفيذية للحكومات والشركات العالمية والكبيرة والمتوسطة والناشئة.</p>
+                    <p>{% trans "We provide strategic and executive consulting for governments, global, large, medium, and emerging companies." %}</p>
                 </div>
             </div>
         </div>
@@ -104,7 +114,7 @@
     <section class="services" id="services">
         <div class="services-container">
             <div class="services-header">
-                <h2>مجالات الإستشارة</h2>
+                <h2>{% trans "Consulting Areas" %}</h2>
                 <div class="services-divider"></div>
             </div>
 
@@ -129,7 +139,7 @@
     <section class="core-services">
         <div class="core-container">
             <div class="core-header">
-                <h2>الخدمات الرئيسية</h2>
+                <h2>{% trans "Core Services" %}</h2>
                 <div class="core-divider"></div>
             </div>
 
@@ -142,7 +152,7 @@
                         {% for item in core.items.all %}
                         <li>{{ item.text }}</li>
                         {% empty %}
-                        <li>تفاصيل الخدمة قيد الإضافة</li>
+                        <li>{% trans "Service details are being added" %}</li>
                         {% endfor %}
                     </ul>
                 </article>
@@ -156,18 +166,18 @@
     <section class="why-kemet" id="contact">
         <div class="why-kemet-container">
             <div class="why-kemet-content">
-                <h2>لماذا Kemét؟</h2>
+                <h2>{% trans "Why Kemét?" %}</h2>
                 <ul class="why-list">
-                    <li>نمثل حضارتين تصنعان الزمن</li>
-                    <li>نقدم حلول قابلة للتنفيذ</li>
-                    <li>لدينا فلسفة تجمع الأصالة بالمستقبل</li>
-                    <li>نقدم نتائج ملموسة</li>
-                    <li>نقدم تصميم نموذج خاص بكل مشروع</li>
+                    <li>{% trans "We represent two civilizations that shape time" %}</li>
+                    <li>{% trans "We provide implementable solutions" %}</li>
+                    <li>{% trans "We have a philosophy that combines authenticity with the future" %}</li>
+                    <li>{% trans "We deliver tangible results" %}</li>
+                    <li>{% trans "We provide a custom model design for each project" %}</li>
                 </ul>
             </div>
 
             <div class="contact-content">
-                <h3>اتصل بنا</h3>
+                <h3>{% trans "Contact Us" %}</h3>
                 <div class="contact-methods">
                     {% if contact_methods %}
                     {% for method in contact_methods %}
@@ -190,7 +200,7 @@
                     {% endfor %}
                     {% endif %}
 
-                    <button class="contact-cta">احجز استشارة مجانية</button>
+                    <button class="contact-cta">{% trans "Book a Free Consultation" %}</button>
                 </div>
             </div>
         </div>
@@ -201,17 +211,17 @@
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h5>روابط سريعة</h5>
+                    <h5>{% trans "Quick Links" %}</h5>
                     <ul class="footer-links">
-                        <li><a href="#home">الرئيسية</a></li>
-                        <li><a href="#about">من نحن</a></li>
-                        <li><a href="#services">الخدمات</a></li>
-                        <li><a href="#contact">التواصل</a></li>
+                        <li><a href="#home">{% trans "Home" %}</a></li>
+                        <li><a href="#about">{% trans "About Us" %}</a></li>
+                        <li><a href="#services">{% trans "Services" %}</a></li>
+                        <li><a href="#contact">{% trans "Contact" %}</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h5>تواصل معنا</h5>
+                    <h5>{% trans "Contact Us" %}</h5>
                     <ul class="footer-contact">
                         {% if footer_contact %}
                         {% for c in footer_contact %}<li><a href="{{ c.link }}">{{ c.text }}</a></li>{% endfor %}
@@ -222,7 +232,7 @@
                 </div>
 
                 <div class="footer-section">
-                    <h5>تابعنا</h5>
+                    <h5>{% trans "Follow Us" %}</h5>
                     <div class="footer-social">
                         {% if social_links %}
                         {% for s in social_links %}
@@ -244,12 +254,12 @@
                     {% if footer_info and footer_info.copyright_text %}
                     {{ footer_info.copyright_text }}
                     {% else %}
-                    © {{ current_year }} Kemét Consulting. All rights reserved
+                    {% blocktrans with year=current_year %}© {{ year }} Kemét Consulting. All rights reserved{% endblocktrans %}
                     {% endif %}
                 </p>
 
                 <p class="footer-developer">
-                    This website was developed under the supervision of &nbsp;
+                    {% trans "This website was developed under the supervision of" %} &nbsp;
                     <a href="https://www.facebook.com/ahmed.mana.7509" target="_blank"
                         class="developer-link">
                         <span>Eng. Ahmed Medhat Mannaa</span>

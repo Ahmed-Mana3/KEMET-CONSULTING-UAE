@@ -1,17 +1,18 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="{{ LANGUAGE_CODE|default:'ar' }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خطأ في الخادم - Kemét Consulting</title>
+    <title>{% trans "Server Error - Kemét Consulting" %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <div style="text-align: center; padding: 100px 20px;">
-        <h1>500 - خطأ في الخادم</h1>
-        <p>عذراً، حدث خطأ في الخادم. يرجى المحاولة لاحقاً.</p>
-        <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #0b7285; color: white; text-decoration: none; border-radius: 6px;">العودة للرئيسية</a>
+        <h1>500 - {% trans "Server Error" %}</h1>
+        <p>{% trans "Sorry, a server error occurred. Please try again later." %}</p>
+        <a href="/" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #0b7285; color: white; text-decoration: none; border-radius: 6px;">{% trans "Return to Home" %}</a>
     </div>
 </body>
 </html>

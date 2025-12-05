@@ -11,8 +11,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 if not SECRET_KEY:
     raise ValueError("SECRET_KEY not set in .env file")
 
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'kemetvision.com', 'www.kemetvision.com']
+# DEBUG mode - Set to True for localhost development
+# For localhost, you can also set DEBUG=True in .env file
+DEBUG = os.getenv('DEBUG', 'True') == 'True'  # Default to True for development
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'kemetvision.com', 'www.kemetvision.com']
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -29,6 +31,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # ✅ Add for static files
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # ✅ Add for i18n
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -48,6 +51,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -72,7 +76,18 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'ar'
 TIME_ZONE = 'Asia/Dubai'
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
+
+# Supported languages
+LANGUAGES = [
+    ('ar', 'Arabic'),
+    ('en', 'English'),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 # ✅ Static files configuration
 STATIC_URL = '/static/'
@@ -92,12 +107,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # PRODUCTION SECURITY SETTINGS
 # ============================================
 
-SECURE_SSL_REDIRECT = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
-SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
-SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
-SECURE_HSTS_PRELOAD = not DEBUG
+# Disable SSL redirects in DEBUG mode (for localhost development)
+# Force disable SSL for localhost even if DEBUG is False
+_is_localhost = '127.0.0.1' in ALLOWED_HOSTS or 'localhost' in ALLOWED_HOSTS
+# ALWAYS disable SSL redirect for localhost - this is critical!
+SECURE_SSL_REDIRECT = False  # Completely disabled for development
+SESSION_COOKIE_SECURE = False if (DEBUG or _is_localhost) else True
+CSRF_COOKIE_SECURE = False if (DEBUG or _is_localhost) else True
+SECURE_HSTS_SECONDS = 0 if (DEBUG or _is_localhost) else 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False if (DEBUG or _is_localhost) else True
+SECURE_HSTS_PRELOAD = False if (DEBUG or _is_localhost) else True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
@@ -106,6 +125,15 @@ CSRF_TRUSTED_ORIGINS = [
     'https://kemetvision.com',
     'https://www.kemetvision.com',
 ]
+
+# Add localhost to CSRF_TRUSTED_ORIGINS for development
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS.extend([
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+        'http://localhost',
+        'http://127.0.0.1',
+    ])
 
 # Caching
 CACHES = {

@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-05 17:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/index.html:14
+msgid "Kemét Consulting – Expert Consultants"
+msgstr "Kemét Consulting – Expert Consultants"
+
+#: templates/index.html:64
+msgid "Home"
+msgstr "Home"
+
+#: templates/index.html:65
+msgid "About"
+msgstr "About"
+
+#: templates/index.html:66
+msgid "Services"
+msgstr "Services"
+
+#: templates/index.html:67
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/index.html:75
+msgid "Where a 7,000-year-old civilization meets a civilization that built the future in half a century"
+msgstr "Where a 7,000-year-old civilization meets a civilization that built the future in half a century"
+
+#: templates/index.html:76
+msgid "We provide advisory and executive solutions that create real impact for governments and companies across all sectors"
+msgstr "We provide advisory and executive solutions that create real impact for governments and companies across all sectors"
+
+#: templates/index.html:77
+msgid "Book a Private Appointment"
+msgstr "Book a Private Appointment"
+
+#: templates/index.html:84
+msgid "About Us"
+msgstr "About Us"
+
+#: templates/index.html:88
+msgid "An identity that spans time and moves toward the future"
+msgstr "An identity that spans time and moves toward the future"
+
+#: templates/index.html:103
+msgid ""
+"We are <span class=\"highlight\">Kemét Consulting</span>, a house of "
+"expertise that combines the wisdom of the pharaohs who created the first "
+"systems of management and engineering with the civilization of the UAE that "
+"built a complete future in half a century."
+msgstr ""
+"We are <span class=\"highlight\">Kemét Consulting</span>, a house of "
+"expertise that combines the wisdom of the pharaohs who created the first "
+"systems of management and engineering with the civilization of the UAE that "
+"built a complete future in half a century."
+
+#: templates/index.html:97
+msgid "We provide strategic and executive consulting for governments, global, large, medium, and emerging companies."
+msgstr "We provide strategic and executive consulting for governments, global, large, medium, and emerging companies."
+
+#: templates/index.html:107
+msgid "Consulting Areas"
+msgstr "Consulting Areas"
+
+#: templates/index.html:132
+msgid "Core Services"
+msgstr "Core Services"
+
+#: templates/index.html:145
+msgid "Service details are being added"
+msgstr "Service details are being added"
+
+#: templates/index.html:159
+msgid "Why Kemét?"
+msgstr "Why Kemét?"
+
+#: templates/index.html:161
+msgid "We represent two civilizations that shape time"
+msgstr "We represent two civilizations that shape time"
+
+#: templates/index.html:162
+msgid "We provide implementable solutions"
+msgstr "We provide implementable solutions"
+
+#: templates/index.html:163
+msgid "We have a philosophy that combines authenticity with the future"
+msgstr "We have a philosophy that combines authenticity with the future"
+
+#: templates/index.html:164
+msgid "We deliver tangible results"
+msgstr "We deliver tangible results"
+
+#: templates/index.html:165
+msgid "We provide a custom model design for each project"
+msgstr "We provide a custom model design for each project"
+
+#: templates/index.html:170
+msgid "Contact Us"
+msgstr "Contact Us"
+
+#: templates/index.html:193
+msgid "Book a Free Consultation"
+msgstr "Book a Free Consultation"
+
+#: templates/index.html:204
+msgid "Quick Links"
+msgstr "Quick Links"
+
+#: templates/index.html:243
+msgid "Follow Us"
+msgstr "Follow Us"
+
+#: templates/index.html:247
+#, python-format
+msgid "© %(year)s Kemét Consulting. All rights reserved"
+msgstr "© %(year)s Kemét Consulting. All rights reserved"
+
+#: templates/index.html:252
+msgid "This website was developed under the supervision of"
+msgstr "This website was developed under the supervision of"
+
+#: templates/404.html:7
+msgid "Page Not Found - Kemét Consulting"
+msgstr "Page Not Found - Kemét Consulting"
+
+#: templates/404.html:12
+msgid "404 - Page Not Found"
+msgstr "404 - Page Not Found"
+
+#: templates/404.html:13
+msgid "Sorry, the page you are looking for is not available."
+msgstr "Sorry, the page you are looking for is not available."
+
+#: templates/404.html:14
+msgid "Return to Home"
+msgstr "Return to Home"
+
+#: templates/500.html:7
+msgid "Server Error - Kemét Consulting"
+msgstr "Server Error - Kemét Consulting"
+
+#: templates/500.html:12
+msgid "500 - Server Error"
+msgstr "500 - Server Error"
+
+#: templates/500.html:13
+msgid "Sorry, a server error occurred. Please try again later."
+msgstr "Sorry, a server error occurred. Please try again later."
+
