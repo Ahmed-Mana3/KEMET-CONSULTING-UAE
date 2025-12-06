@@ -31,6 +31,9 @@ nav {
     width: 100%;
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 nav ul {
@@ -38,7 +41,10 @@ nav ul {
     display: flex;
     gap: 40px;
     justify-content: center;
+    align-items: center;
+    margin: 0 auto;
     flex-direction: row-reverse;
+    max-width: fit-content;
 }
 
 nav ul li {
