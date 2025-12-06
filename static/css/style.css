@@ -38,6 +38,7 @@ nav ul {
     display: flex;
     gap: 40px;
     justify-content: center;
+    margin: 0 auto;
     flex-direction: row-reverse;
 }
 
